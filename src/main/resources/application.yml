@@ -1,0 +1,59 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-dataset-archive
+  jackson:
+    default-property-inclusion: non_null
+    deserialization:
+      fail-on-unknown-properties: false
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    host: ${SPRING_DATASOURCE_HOST}
+    port: 3306
+    database: DatasetArchive
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    dialect: org.hibernate.dialect.MySQLDialect
+    driverClassName: com.mysql.cj.jdbc.Driver
+    testOnBorrow: true
+    initialSize: 10
+    maxActive: 30
+    maxPoolSize: 100
+    validationQuery: SELECT 1
+    hibernate:
+      show-sql: false
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          user-name-claim-name: user_name
+          authorities-claim-name: authorities
+          authority-prefix: "ROLE_"
+      custom:
+        main-authority: ADMIN
+        access-authority: USER
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+
+redis:
+  port: 6379
+  prefix: s
+  url: ${REDIS_URL}
+  host: ${REDIS_HOST}
+  name: "security"
+
+aws:
+  bucket-name: dataset-archive-repo
+  access-point: ${AWS_ACCESSPOINT}
+
+bezkoder:
+  app:
+    jwtSecret: ${BEZKODER_APP_JWTSECRET}
+    jwtExpirationMs: 86400000
