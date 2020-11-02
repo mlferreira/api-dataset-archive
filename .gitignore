@@ -1,0 +1,32 @@
+*.log
+.gradle
+production.env
+.env
+args
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# gradle properties
+gradle.properties
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+
+### Terraform
+*.terraform/
+
+/build/
